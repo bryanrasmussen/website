@@ -1,13 +1,13 @@
 ---
-title: 'Benjamin Lupton'
+title: 'Bryan Rasmussen'
 ---
 
 # Prepare
 documentTitle = @getPreparedTitle()
-
+lingo = if @document.lang then document.lang else 'en'
 # HTML
 doctype 5
-html lang: 'en', ->
+html lang: lingo, ->
 	head ->
 		# Standard
 		meta charset: 'utf-8'
@@ -33,49 +33,44 @@ html lang: 'en', ->
 		meta name: 'keywords', content: @getPreparedKeywords()
 
 		# Styles
-		text  @getBlock('styles').add(@site.styles).toHTML()
+		link rel: 'stylesheet', href: "http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", media: 'screen, projection'
+		link rel: 'stylesheet', href: "http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css", media: 'screen, projection'
+
 		link rel: 'stylesheet', href: "/styles/style.css?v=#{@site.version}", media: 'screen, projection'
 		link rel: 'stylesheet', href: "/styles/print.css?v=#{@site.version}", media: 'print'
 		link rel: 'stylesheet', href: '/vendor/fancybox-2.1.5/jquery.fancybox.css', media: 'screen, projection'
-	body ->
-		# Modals
-		aside '.modal.contact', -> @partial('content/contact')
-		aside '.modal.backdrop', ->
-
-		# Heading
-		header '.heading', ->
-			a href:'/', title:'Return home', ->
-				h1 -> @site.text.heading
-				span '.heading-avatar', ->
-			h2 -> @site.text.subheading
-
-		# Pages
-		nav '.pages', ->
-			ul ->
-				for page in @getCollection('pages').toJSON()
-					pageMatch = page.match or page.url
-					documentMatch = @document.match or @document.url
-					cssname = if documentMatch.indexOf(pageMatch) is 0 then 'active' else 'inactive'
-					li 'class':cssname, ->
-						a href:page.url, title:page.menuTitle, ->
-							page.menuText or page.name
-
-		# Document
-		article '.page',
-			'typeof': 'sioc:page'
-			about: @document.url
-			datetime: @document.date.toISOString()
-			-> @content
-
-		# Footing
-		footer '.footing', ->
-			div '.about', -> @site.text.about
-			div '.copyright', -> @site.text.copyright
-
-		# Sidebar
-		aside '.sidebar', ->
-			# Social
-			text @partial("social/#{social}", @)  for social in @site.social
-
-		# Scripts
-		text @getBlock('scripts').add(@site.scripts).toHTML()
+	body '#css-zen-garden', ->
+        div class:"navbar navbar-fixed-top", role:"navigation", ->
+            div ".container", ->
+                div ".navbar-header", ->
+                    a ".navbar-brand", href: "/", ->
+                        text 'Compender ->'
+                        span '.compended', -> 'Bryan Rasmussen'
+                div class:"collapse navbar-collapse", ->
+                    ul class: "nav navbar-nav", ->
+                        li -> a href: "/about", -> 'About'
+                        li -> a href: "/contact", -> 'Contact'
+                        
+        div "#sidebar", class: "col-xs-6 col-sm-3 sidebar-offcanvas", role: "navigation", ->
+            div class: "well sidebar-nav", ->
+                img src: "/images/blog_profile_pic.png", width: 200, height: 200
+                ul ".nav", ->
+                    li -> a href: '/chunky', -> 'Bacon!'
+        
+        div '#container' ,class: 'container', ->
+           
+            div "#content", class: "row row-offcanvas row-offcanvas-right", ->
+                div "#column1", class: "col-xs-12 col-sm-9", ->
+                    div ".row", ->
+                        @content                    
+            footer '.footing', ->
+                div '.about', -> @site.text.about
+                div '.copyright', -> @site.text.copyright
+        
+        # Sidebar
+        
+        # Social
+        #text @partial("social/#{social}", @)  for social in @site.social
+        
+        # Scripts
+        text @getBlock('scripts').add(@site.scripts).toHTML()

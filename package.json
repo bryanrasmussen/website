@@ -1,28 +1,13 @@
 {
-  "name": "balupton.docpad",
+  "name": "bras.docpad",
   "version": "1.2.8",
-  "description": "Website of Benjamin Lupton. Founder of Bevry, DocPad and HistoryJS. Aficionado of HTML5, CoffeeScript and NodeJS. Available for consulting, training and talks. ENTP.",
-  "homepage": "https://github.com/balupton/balupton.docpad",
+  "description": "Compendium Website of Bryan Rasmussen",
+  "homepage": "bryanrasmussen.name",
   "keywords": [
-    "balupton",
-    "benjamin lupton",
-    "website",
-    "docpad"
+    "Bryan Rasmussen",
+    "website"
   ],
-  "author": "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
-  "maintainers": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
-  "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
-  ],
-  "bugs": {
-    "url": "https://github.com/balupton/balupton.docpad/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/balupton/balupton.docpad.git"
-  },
+  "author": "Bryan Rasmussen <rasmussen.bryan@gmail.com> (http://bryanrasmussen.name)",
   "engines": {
     "node": "0.10",
     "npm": "1.2"

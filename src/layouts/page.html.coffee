@@ -6,7 +6,7 @@ layout: default
 if @document.title
 	header '.page-header', ->
 		a href: @document.url, ->
-			h1 property: 'dcterms:title', ->
+			h4 property: 'dcterms:title', ->
 				@document.title
 
 # Content
